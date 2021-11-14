@@ -1,0 +1,40 @@
+
+@import url('http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext');
+
+body {
+    font-family: "Lato";
+}
+
+.rt-thead, .rt_header_class {
+    color: #fefefe;
+    background-color: #2d4268;
+}
+
+
+
+.rt_header_class[aria-sort="ascending"],
+.rt_header_class[aria-sort="descending"] {
+  background-color: #faff43;
+  color: #040000;
+}
+
+.athlete_name_big {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.athlete_event_big {
+    font-size: 24px;
+}
+
+.athlete_input {
+    font-size: 14px;
+}
+
+.gt_group_heading {
+    display:none;
+}
+
+.gt_heading.gt_title.gt_font_normal {
+    font-size: 36px;
+}
