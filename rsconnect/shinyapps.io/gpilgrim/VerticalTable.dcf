@@ -5,9 +5,9 @@ account: gpilgrim
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 5121635
-bundleId: 5250648
+bundleId: 5251220
 url: https://gpilgrim.shinyapps.io/VerticalTable/
-when: 1636908069.20314
-lastSyncTime: 1636908069.20315
+when: 1636924510.12773
+lastSyncTime: 1636924510.12775
 asMultiple: FALSE
 asStatic: FALSE

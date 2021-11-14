@@ -5,17 +5,8 @@ body {
     font-family: "Lato";
 }
 
-.rt-thead, .rt_header_class {
-    color: #fefefe;
-    background-color: #2d4268;
-}
-
-
-
-.rt_header_class[aria-sort="ascending"],
-.rt_header_class[aria-sort="descending"] {
-  background-color: #faff43;
-  color: #040000;
+.control-label {
+    font-size: 22px;
 }
 
 .athlete_name_big {
@@ -28,13 +19,27 @@ body {
 }
 
 .athlete_input {
-    font-size: 14px;
+    font-size: 16px;
 }
 
-.gt_group_heading {
+
+
+.rt-thead, .rt_header_class {
+    color: #fefefe;
+    background-color: #2d4268;
+}
+
+.rt-tfoot {
+    font-weight: bold;
+}
+
+.rt_header_class[aria-sort="ascending"],
+.rt_header_class[aria-sort="descending"] {
+  background-color: #faff43;
+  color: #040000;
+}
+
+#vert .gt_group_heading {
     display:none;
 }
 
-.gt_heading.gt_title.gt_font_normal {
-    font-size: 36px;
-}

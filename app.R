@@ -112,13 +112,21 @@ server <- function(input, output, session) {
        select(., -Event) else .
      } %>% 
       reactable(.,
-                defaultColDef = colDef(align = "center", headerClass = "rt_header_class"),
+                defaultColDef = colDef(align = "center", 
+                                       headerClass = "rt_header_class",
+                                       footer = function(values, name) 
+                                         if (str_detect(name, "Attempts|Clear")) {
+                                           col_summary <- round(sum(values) / length(values), 1)
+                                           return(col_summary)
+                                         }
+                                       ),
+                defaultSorted = "Meet_Mark",
                 columnGroups = list(
                   colGroup(name = "Heights", columns = agg_height_cols),
                   colGroup(name = "Jumps", columns = agg_jump_cols)
                 ),
                 columns = list(
-                  Meet = colDef(minWidth = 85, align = "left"),
+                  Meet = colDef(minWidth = 85, align = "left", footer = "Average per meet:"),
                   Event_ID = colDef(show = FALSE),
                   Meet_ID = colDef(show = FALSE),
                   Meet_Mark = colDef(name = "Mark"),
@@ -134,6 +142,7 @@ server <- function(input, output, session) {
                 theme = reactableTheme(
                   rowSelectedStyle = list(backgroundColor = "#cbdeff", boxShadow = "inset 5px 0 0 0 #ff180e")
                 )
+                
               )
    }
 )
@@ -210,10 +219,10 @@ server <- function(input, output, session) {
       mutate(across(matches("^\\d"), ~replace(., is.na(.), "   "))) %>% 
       mutate(across(cols = -Name, .fns = ~ as.factor(.))) %>% 
       select(!matches("^\\d"), str_sort(names(.), numeric = TRUE)) %>% 
-      gt() %>%
+      gt(id = "vert") %>%
       tab_header(title = meet_info$Meet,
                  subtitle = paste0(meet_info$Gender, "'s ", meet_info$Event, " | ", meet_info$Event_Date)) %>%
-      opt_align_table_header(align = "left") %>% 
+    #  opt_align_table_header(align = "left") %>% 
       tab_spanner_delim(columns = -Name, delim = "_") %>%
       data_color(
         columns = -Name,
