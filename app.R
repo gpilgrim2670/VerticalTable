@@ -3,6 +3,7 @@ library(shiny)
 library(shinyjs)
 library(dplyr)
 library(tidyr)
+library(stringr)
 library(reactable)
 library(gt)
 
@@ -155,7 +156,7 @@ server <- function(input, output, session) {
   full_meet_table <- reactive({
     full_meet <- vertical_championships %>%
       filter(Event_ID == selected_meet()) %>%
-      select(Name, Attempt1, Attempt2, Attempt3, Height) %>%
+      select(Name, Attempt1, Attempt2, Attempt3, Height, Meet_ID, Event_Date, Event, Gender) %>%
       pivot_longer(
         cols = contains("Attempt"),
         names_to = "Attempt",
@@ -187,7 +188,8 @@ server <- function(input, output, session) {
                      P = "#cbdeff",
                      "-" = "#cbdeff",
                      " " = "#ff180e44",
-                     "  " = "#44aa22")
+                     "  " = "#44aa22",
+                     "   " = "#A9A9A9")
     
     #### collect basic information about the meet/event to display ####
     meet_info <- vertical_championships %>%
@@ -198,14 +200,16 @@ server <- function(input, output, session) {
     #### create gt table to display entire event results in vertical format ####
     full_meet %>%
       arrange(factor(Name, levels = table_order)) %>%
-      mutate(Bar_Attempt = paste0(Height, "_", Attempt),
+      mutate(Bar_Attempt = paste0(sprintf("%.2f", Height), "_", Attempt),
              
              Outcome = case_when(is.na(Outcome) ~ " ", 
                                  Outcome == "" ~ "  ",
                                  TRUE ~ Outcome))  %>%
       select(Name, Outcome, Bar_Attempt) %>%
       pivot_wider(names_from = "Bar_Attempt", values_from = "Outcome") %>%
-      mutate(across(cols = -Name, .fns = ~ as.factor(.)))  %>%
+      mutate(across(matches("^\\d"), ~replace(., is.na(.), "   "))) %>% 
+      mutate(across(cols = -Name, .fns = ~ as.factor(.))) %>% 
+      select(!matches("^\\d"), str_sort(names(.), numeric = TRUE)) %>% 
       gt() %>%
       tab_header(title = meet_info$Meet,
                  subtitle = paste0(meet_info$Gender, "'s ", meet_info$Event, " | ", meet_info$Event_Date)) %>%
