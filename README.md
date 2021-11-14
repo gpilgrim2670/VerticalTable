@@ -1,5 +1,7 @@
 # VerticalTable
-Table presentation for pole vaults and high jumps
+
+## Pole vault & high jump results: Clearing a new bar
+#### Interactive tables using Shiny, reactable and gt
 
 By George Perry and Greg Pilgrim
 
