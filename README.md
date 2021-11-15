@@ -15,16 +15,16 @@ In this tutorial, we’ll take a break from swimming, running and jumping to wal
 
 Track & field result sheets manage to provide a lot of information without actually telling you anything. High jump and pole vault results usually come out looking something like this:
 
-!(vertical-results-screenshot1.png)
+![Typical vertical event results display from track & field](/vertical-results-screenshot1.png)
 {: .blog-center-image}
 
 Or even this:
 
-!(vertical-results-screenshot1.png)
+![Another sadly typical T&F vertical event results display](/VerticalTable/blob/main/vertical-results-screenshot2.png)
 {: .blog-center-image}
 
 
-Sadly, not only is that what goes in the official record of the meet, it’s usually what makes its way onto websites and social media. On meet days, photos of printouts and screen caps abound on T&F Twitter and Insta. Results are scattered all over the web, so simply compiling a bunch of these results sheets is quite challenging, let alone if you wanted to get a snapshot of an athlete’s season or career. “How many heights did she clear at last year’s national championships?” is a question few ask, and no one other than athlete and coach could probably answer.
+Sadly, not only is that what goes in the official record of the meet, it’s usually what makes its way onto websites and social media. On meet days, photos of printouts and screen caps abound on T&F Twitter and Insta. Results are scattered all over the web, so simply compiling a bunch of these results sheets is quite challenging, let alone if you wanted to get a snapshot of an athlete’s season or career. “How many heights did she clear at last year’s national championships?” is a question few ask, and no one other than the athlete and her coach could probably answer.
 
 Enter [JumpeR](https://cran.r-project.org/web/packages/JumpeR/index.html). JumpeR is built using many tools from rvest and some functions from [SwimmeR](https://cran.r-project.org/web/packages/SwimmeR/index.html). 
 
@@ -94,7 +94,7 @@ Our results summary will contain the number of bar heights each athlete attempts
 
 Which means they are perfect grouping.
 
-We define our columns within our renderReactable call, but before we start creating the table itself. Then, in the reactable() call, we define columnGroups using the names we gave those vectors, and then give them their obvious names.
+We define our columns within our renderReactable call, but before we start creating the table itself. Then, in the `reactable()` call, we define `columnGroups` using the names we gave those vectors, and then give them their obvious names.
 
 ```
 output$name_rt <- renderReactable({
@@ -105,7 +105,7 @@ output$name_rt <- renderReactable({
 
  ``` 
 
-One thing to watch when creating grouped columns is that you create two different elements in the table’s header. You can style these using headingStyle or groupHeadingStyle. But since we already had a CSS stylesheet going, we customized the background color and font color by accessing the header groups.
+One thing to watch when creating grouped columns is that you create two different elements in the table’s header. You can style these using `headingStyle` or `groupHeadingStyle`. But since we already had a CSS stylesheet going, we customized the background color and font color by accessing the header groups.
 
 ```
 .rt-thead, .rt_header_class {
@@ -116,7 +116,7 @@ One thing to watch when creating grouped columns is that you create two differen
 
 #### 2. Footer row
 
-The footer row in a reactable table is not unlike using a summarize function in dplyr: you can take the sum, mean or any other aggregate function on the column. But how you do it is different. 
+The footer row in a reactable table is not unlike using `summarize` in `dplyr`: you can take the sum, mean or any other aggregate function on the column. But how you do it is different. 
 
 Footers can be text, a calculated value or some combination of the two. If the footer for a cell is an aggregate function, it’s given as a function of the values in a column and the name of a column. This can be done within the colDef for a given column.
 
@@ -125,7 +125,7 @@ columns = list(
                   Meet = colDef(minWidth = 85, align = "left", footer = "Average per meet:"),
 ```                  
 
-But we’re doing the same thing – taking the sum - of 4 of our columns, and we didn’t want to add the same line of code to the colDef for those 4 columns. Instead, we used the defaultColDef, but made it less-than-truly-default by having it apply only to those columns that show attempts or clearances. 
+But we’re doing the same thing – taking the sum - of 4 of our columns, and we didn’t want to add the same line of code to the colDef for those 4 columns. Instead, we used the `defaultColDef`, but made it less-than-truly-default by having it apply only to those columns that show attempts or clearances. 
 
 ```
  defaultColDef = colDef(align = "center", 
@@ -257,9 +257,9 @@ So let’s pause in appreciation. Shiny and reactable work well together. gt and
 
 ### What's left to do?
 
-A lot! We know what we have on our to-do list, but a big part of the reason why we decided to do this was to get more people than just the two of us to be playing with and exploring track & field (and swimming) data. To that end, all of the results data from championship meets - like what we used in this tutorial - will be available via a public repo by the end of 2021. People can't have fun with data unless they have the data, and athletics needs all the eyes it can get.
+A lot! We know what we have on our to-do list, but a big part why we decided to do this was to get more people than just the two of us to be playing with and [exploring track & field](https://nalathletics.com/map) (and swimming) data. To that end, all of the results data from championship meets - like what we used in this tutorial - will be available via a public repo by the end of 2021. People can't have fun with data unless they have the data, and athletics needs all the eyes it can get.
 
-On that note of attention-seeking behaviors, if you've read this far you clearly like George and his writing quite a bit and you may have thought to yourself "His writing is way better than his R." If that's the case, please check out his recently released book, [EGOals: Exercising Your Ego in High-Performance Environments](https://www.amazon.com/EGOals-Exercising-your-high-performance-environments/dp/B09HJ5VV51/), which he co-authored with sports performance scientist Martin Buchheit. And stay up on all things [track & field data at NALathletics](https://nalathletics.com/tag/dataviz/).
+On that note of attention-seeking behaviors, if you've read this far you clearly like George and his writing quite a bit and you may have thought to yourself "His writing is way better than his R." If that's the case, first off, you're right. So please check out his recently released book, [EGOals: Exercising Your Ego in High-Performance Environments](https://www.amazon.com/EGOals-Exercising-your-high-performance-environments/dp/B09HJ5VV51/), which he co-authored with sports performance scientist Martin Buchheit. And stay up on all things [track & field data at NALathletics](https://nalathletics.com/tag/dataviz/).
 
 And if swimming or more serious R chops are your thing, then dive (HA!) into the SwimmeR world with [Greg's website](https://pilgrim.netlify.app/about/) and [GitHub page](https://github.com/gpilgrim2670/).
 
