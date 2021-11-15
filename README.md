@@ -16,12 +16,12 @@ In this tutorial, we’ll take a break from swimming, running and jumping to wal
 Track & field result sheets manage to provide a lot of information without actually telling you anything. High jump and pole vault results usually come out looking something like this:
 
 ![Typical vertical event results display from track & field](/vertical-results-screenshot1.png)
-{: .blog-center-image}
+
 
 Or even this:
 
+
 ![Another sadly typical T&F vertical event results display](/vertical-results-screenshot2.png)
-{: .blog-center-image}
 
 
 Sadly, not only is that what goes in the official record of the meet, it’s usually what makes its way onto websites and social media. On meet days, photos of printouts and screen caps abound on T&F Twitter and Insta. Results are scattered all over the web, so simply compiling a bunch of these results sheets is quite challenging, let alone if you wanted to get a snapshot of an athlete’s season or career. “How many heights did she clear at last year’s national championships?” is a question few ask, and no one other than the athlete and her coach could probably answer.
